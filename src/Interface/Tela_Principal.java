@@ -6,7 +6,7 @@ package Interface;
  */
 public class Tela_Principal extends javax.swing.JFrame {
 
-    public conexao con;
+//    public conexao con;
 
     /**
      * Creates new form Tela_Principal
