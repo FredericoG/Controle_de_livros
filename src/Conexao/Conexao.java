@@ -20,7 +20,7 @@ public class Conexao {
 
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            con = DriverManager.getConnection("controle_de_livros", "root", "");
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/biblioteca", "root", "");
 
             JOptionPane.showMessageDialog(null, "Conexão aceita.");
         } catch (ClassNotFoundException | SQLException e) {
@@ -32,18 +32,18 @@ public class Conexao {
 
     public void verificausuario(String login, String senha) {
 
+        Connection conect;
+        conect = null;
         if (login.equals("") || senha.equals("")) {
 
             JOptionPane.showMessageDialog(null, "Usuário e senha não podem ficar vazios!");
 
         } else {
 
-            Connection conect;
-            conect = null;
             try {
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
-                conect = DriverManager.getConnection("controle_de_livros", "root", "");
-                String SQL = "Select * from frederico.usuario where login = " + "'login'" + "and senha = " + "'senha'" + ";";
+                conect = DriverManager.getConnection("jdbc:derby://localhost:1527/biblioteca", "root", "");
+                String SQL = "Select * from usuario where usuariologin = " + "'login'" + "and usuariosenha = " + "'senha'" + ";";
                 ResultSet rs = stm.executeQuery(SQL);
 
                 while (rs.next()) {
@@ -53,6 +53,7 @@ public class Conexao {
 
                     if (login.equals(loginn) && senha.equals(senhaa)) {
                         JOptionPane.showMessageDialog(null, "Seja bem vindo: " + nomee, null, JOptionPane.INFORMATION_MESSAGE);
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou Senha inválidos.", null, JOptionPane.ERROR_MESSAGE);
                     }
