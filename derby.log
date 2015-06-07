@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=6.3
 derby.system.home=C:\Users\Frederico\Documents\NetBeansProjects\Biblioteca\Controle_de_livros
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Jun 07 13:18:56 BRT 2015: Shutting down Derby engine
