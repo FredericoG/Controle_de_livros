@@ -1,5 +1,6 @@
 package biblioteca;
 
+import Conexao.Conexao;
 import Interface.Interface;
 
 /**
@@ -15,6 +16,8 @@ public class Biblioteca {
 
         Interface i = new Interface();
         i.setVisible(true);
+
+        
     }
 
 }

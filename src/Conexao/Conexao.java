@@ -1,13 +1,10 @@
 package Conexao;
 
-import Interface.Interface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +19,8 @@ public class Conexao {
     public Conexao() {
 
         try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            con = DriverManager.getConnection("jdbc:derby:Frederico", "frederico", "eobr04");
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            con = DriverManager.getConnection("controle_de_livros", "root", "");
 
             JOptionPane.showMessageDialog(null, "Conexão aceita.");
         } catch (ClassNotFoundException | SQLException e) {
@@ -37,14 +34,15 @@ public class Conexao {
 
         if (login.equals("") || senha.equals("")) {
 
-            JOptionPane.showMessageDialog(null, "Usuário e senha não podem estar vazio");
+            JOptionPane.showMessageDialog(null, "Usuário e senha não podem ficar vazios!");
 
         } else {
 
-            //Connection con = null;
+            Connection conect;
+            conect = null;
             try {
-                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-                con = DriverManager.getConnection("jdbc:derby:Frederico", "frederico", "eobr04");
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                conect = DriverManager.getConnection("controle_de_livros", "root", "");
                 String SQL = "Select * from frederico.usuario where login = " + "'login'" + "and senha = " + "'senha'" + ";";
                 ResultSet rs = stm.executeQuery(SQL);
 
@@ -60,13 +58,13 @@ public class Conexao {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace(); //vejamos que erro foi gerado e quem o gerou  
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erro na conexão, com o banco de dados!", null, JOptionPane.WARNING_MESSAGE);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    con.close();
+                    conect.close();
                 } catch (SQLException onConClose) {
                     //System.out.println("Houve erro no fechamento da conexão");  
                     JOptionPane.showMessageDialog(null, "Erro na conexão, com o banco de dados!", null, JOptionPane.WARNING_MESSAGE);
